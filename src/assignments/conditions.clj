@@ -58,8 +58,8 @@
   [occurrences coll]
   (=
    (filter #((set occurrences) %) coll)
-   occurrences
-   ))
+   occurrences))
+  
 
 (defn conditions-apply
   "Given a collection of any length, returns:
@@ -76,8 +76,8 @@
     [1 3] :wonder-woman
     [:a :b :c] :durga
     [[2 3] [4 5]] :cleopatra
-    :tuntun
-    ))
+    :tuntun))
+  
 
 (defn repeat-and-truncate
   "Given coll and options to repeat and truncate
@@ -87,12 +87,11 @@
   {:level :medium
    :use   '[cond->> concat take]}
   [coll rep? truncate? n]
-   (cond->> coll
-     rep? (concat coll)
-     truncate? (take n)
-    )
+  (cond->> coll
+    rep? (concat coll)
+    truncate? (take n))
   )
-
+      
 (defn order-in-words
   "Given x, y and z, returns a vector consisting of
   sentences that explicitly mention if x > y or y > z or z > x.
@@ -105,10 +104,8 @@
   (cond-> []
     (> x y) (conj :x-greater-than-y)
     (> y z) (conj :y-greater-than-z)
-    (> z x) (conj :z-greater-than-x)
-    )
-  )
-
+    (> z x) (conj :z-greater-than-x)))
+   
 (defn zero-aliases
   "Given a zero-like value(0,[],(),#{},{}) should
   give back an alias for each type of zero like value
@@ -121,4 +118,12 @@
   \"\"  -> :empty-string"
   {:level :easy
    :use   '[case]}
-  [zero-like-value])
+  [zero-like-value]
+  (case zero-like-value
+    0  :zero
+   []  :empty
+   () :empty
+   #{} :empty-set
+   {}  :empty-map
+   \"\" :empty-string)
+  )
