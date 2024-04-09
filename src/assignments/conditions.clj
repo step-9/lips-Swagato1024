@@ -54,6 +54,13 @@
     (> x y) :greece
     :else   :universe))
 
+(defn in?
+  [occurrences coll]
+  (=
+   (filter #((set occurrences) %) coll)
+   occurrences
+   ))
+
 (defn conditions-apply
   "Given a collection of any length, returns:
   :wonder-woman if collection has a single occurrence of 1 and 3 in that order
@@ -65,12 +72,12 @@
    :alternates '[if cond]}
   [coll]
 
-  (cond
-    (= (filter #(or (= 1 %) (= 3 %)) coll) [1 3]) :wonder-woman
-    (= (filter #(or (= :a %) (= :b %) (= :c %)) coll) [:a :b :c]) :durga
-    (= (filter #(or (= [2 3] %) (= [4 5] %)) coll) [[2 3] [4 5]]) :cleopatra
-    :else :tuntun
-  ))
+  (condp in? coll
+    [1 3] :wonder-woman
+    [:a :b :c] :durga
+    [[2 3] [4 5]] :cleopatra
+    :tuntun
+    ))
 
 (defn repeat-and-truncate
   "Given coll and options to repeat and truncate
