@@ -88,7 +88,7 @@
    :use   '[cond->> concat take]}
   [coll rep? truncate? n]
    (cond->> coll
-     rep? (concat coll)
+     rep? (cycle)
      truncate? (take n)
     )
   )
