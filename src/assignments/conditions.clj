@@ -56,8 +56,7 @@
 
 (defn in?
   [occurrences coll]
-  (=
-   (filter #((set occurrences) %) coll)
+  (= (filter (set occurrences) coll)
    occurrences))
   
 
@@ -89,8 +88,7 @@
   [coll rep? truncate? n]
   (cond->> coll
     rep? (concat coll)
-    truncate? (take n))
-  )
+    truncate? (take n)))
       
 (defn order-in-words
   "Given x, y and z, returns a vector consisting of
@@ -125,5 +123,4 @@
    () :empty
    #{} :empty-set
    {}  :empty-map
-   \"\" :empty-string)
-  )
+   \"\" :empty-string))
