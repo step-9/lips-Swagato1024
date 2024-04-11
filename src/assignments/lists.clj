@@ -9,6 +9,14 @@
    :dont-use     '[map]}
   [f & colls])
 
+(defn include-if
+  "Conditionally includes an element in a collection if
+   the predicate function evaluates to true for that element"
+  [pred coll element]
+  (if (pred element)
+    (conj coll element)
+    coll))
+
 (defn filter'
   "Implement a non-lazy version of filter that accepts a
   predicate function and a collection. The output
@@ -16,7 +24,14 @@
   {:level        :easy
    :use          '[loop recur]
    :dont-use     '[filter]}
-  [pred coll])
+  [pred coll]
+  (loop [selected-items []
+         remaining coll]
+    (if (empty? remaining)
+      selected-items
+      (recur (include-if pred selected-items (first remaining))
+         (rest remaining)))
+    ))
 
 (defn reduce'
   "Implement your own multi-arity version of reduce
