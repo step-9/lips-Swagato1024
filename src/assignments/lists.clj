@@ -30,8 +30,7 @@
     (if (empty? remaining)
       selected-items
       (recur (include-if pred selected-items (first remaining))
-         (rest remaining)))
-    ))
+         (rest remaining)))))
 
 (defn reduce'
   "Implement your own multi-arity version of reduce
@@ -50,12 +49,11 @@
    :use          '[loop recur]
    :dont-use     '[count]}
   [coll]
-    (loop [count 0
+  (loop [count 0
          remaining coll]
-    (if (empty? remaining)
-      count
-      (recur (inc count) (rest remaining)))
-    ))
+   (if (empty? remaining)
+     count
+     (recur (inc count) (rest remaining)))))
 
 (defn reverse'
   "Implement your own version of reverse that reverses a coll.
