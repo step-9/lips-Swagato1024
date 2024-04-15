@@ -69,7 +69,12 @@
   {:level        :easy
    :use          '[loop recur and]
    :dont-use     '[every?]}
-  [pred coll])
+  [pred coll]
+  (loop [remaining coll]
+    (if (empty? remaining)
+        true
+      (and (pred (first remaining))
+           (recur (rest remaining))))))
 
 (defn some?'
   "Implement your own version of some that checks if at least one
