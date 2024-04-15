@@ -96,7 +96,10 @@
   {:level        :easy
    :use          '[partition every? partial apply <=]
    :dont-use     '[loop recur]}
-  [coll])
+  [coll]
+  (->> coll
+       (partition 2)
+       (every? (partial apply <=))))
 
 (defn distinct'
   "Implement your own lazy sequence version of distinct which returns
@@ -279,3 +282,7 @@
    :use   '[iterate take-while]
    :alternates '[(implement your own take-until)]}
   [n])
+
+(every? )
+
+(every? (partial apply <=) [1 2 3 2])
