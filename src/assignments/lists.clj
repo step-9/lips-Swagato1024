@@ -282,7 +282,3 @@
    :use   '[iterate take-while]
    :alternates '[(implement your own take-until)]}
   [n])
-
-(every? )
-
-(every? (partial apply <=) [1 2 3 2])
