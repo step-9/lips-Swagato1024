@@ -72,7 +72,7 @@
   [pred coll]
   (loop [remaining coll]
     (if (empty? remaining)
-        true
+      true
       (and (pred (first remaining))
            (recur (rest remaining))))))
 
@@ -84,7 +84,12 @@
   {:level        :easy
    :use          '[loop recur or]
    :dont-use     '[some]}
-  [pred coll])
+  [pred coll]
+  (loop [remaining coll]
+    (if (empty? remaining)
+      false
+      (or (pred (first remaining))
+          (recur (rest remaining))))))
 
 (defn ascending?
   "Verify if every element is greater than or equal to its predecessor"
